@@ -6,6 +6,7 @@
 
 <body>
     <h1 class="user_name">Current League Ladder</h1>
+    <p class="success"></p>
     <div id="future"></div>
     <form id="form" id="chat_form">
 <!--
@@ -23,7 +24,6 @@
     var socket = io.connect('http://localhost:4200');
     // On connecting to the socket, emit "join" to server with a string as a param.
     socket.on('connect', function(data) {
-        // socket.emit('join', 'Hello World from client');
         socket.emit('get_challenger', '');
     }); 
     socket.on('challenger_players', function(players) {
@@ -33,7 +33,7 @@
         d.getHours(); // => 9
         d.getMinutes(); // =>  30
         d.getSeconds(); // => 51
-        console.dir('Updated ladder at ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+        $('.success').html('Updated ladder at ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
         $.each(players, function( index, value ) {
           $('.standings').append('<p>' + value.playerOrTeamName + ' ' + value.leaguePoints + '</p>');
         });

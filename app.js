@@ -8,6 +8,35 @@ var helmet = require('helmet');
 // League api wrapper
 var riotApi = require("riot-api-nodejs");
 const https = require("https"); 
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+// fake posts to simulate a database
+const posts = [
+  {
+    id: 1,
+    author: 'John',
+    title: 'Templating with EJS',
+    body: 'Blog post number 1'
+  },
+  {
+    id: 2,
+    author: 'Drake',
+    title: 'Express: Starting from the Bottom',
+    body: 'Blog post number 2'
+  },
+  {
+    id: 3,
+    author: 'Emma',
+    title: 'Streams',
+    body: 'Blog post number 3'
+  },
+  {
+    id: 4,
+    author: 'Cody',
+    title: 'Events',
+    body: 'Blog post number 4'
+  }
+]
 
 // Use modules
 app.use(express.static(__dirname + '/node_modules'));
@@ -15,7 +44,8 @@ app.use(helmet())
 
 // Route the http request to the index file.
 app.get('/', function (req, res, next) {
-    res.sendFile(__dirname + '/public/index.html');
+    //res.sendFile(__dirname + '/public/index.html');
+    res.render('home', { posts: posts })
 });
 
 // When a client connects, log a message.
