@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <h1 class="user_name">Current League Ladder</h1>
+    <div id="future"></div>
+    <form id="form" id="chat_form">
+<!--
+        <input id="chat_input" type="text">
+        <input type="submit" value="Send">
+-->
+    </form>
+    <div class="standings" style="width: 100%;">
+    </div>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+<script>
+    // Connect through socket to server side
+    var socket = io.connect('http://localhost:4200');
+    // On connecting to the socket, emit "join" to server with a string as a param.
+    socket.on('connect', function(data) {
+        // socket.emit('join', 'Hello World from client');
+        socket.emit('get_challenger', '');
+    }); 
+    socket.on('challenger_players', function(players) {
+        //$('.user_name').html(data); 
+        //var players = jQuery.parseJSON(data);
+        var d = new Date(); // for now
+        d.getHours(); // => 9
+        d.getMinutes(); // =>  30
+        d.getSeconds(); // => 51
+        console.dir('Updated ladder at ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+        $.each(players, function( index, value ) {
+          $('.standings').append('<p>' + value.playerOrTeamName + ' ' + value.leaguePoints + '</p>');
+        });
+    });
+    // On recieving "messages" from server, alert the user of the data.
+//    socket.on('messages', function(data) {
+//        alert(data);
+//    });
+    // On recieving "broad" from server, show the user the data.
+//    socket.on('broad', function(data) {
+//        $('#future').append(data + "<br/>");
+//    }); 
+    // On form submit, Let the server know. 
+    $('form').submit(function(e) {
+//        e.preventDefault();
+//        var message = $('#chat_input').val();
+//        socket.emit('message', message);
+    });
+
+</script>
+
+</html>

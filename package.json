@@ -1,0 +1,20 @@
+{
+  "name": "ladder",
+  "version": "1.0.0",
+  "description": "Real time application to follow video game ladders.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Weston Walker",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
+    "jquery": "^3.2.1",
+    "mysql": "^2.15.0",
+    "riot-api-nodejs": "^2.1.0",
+    "socket.io": "^2.0.4",
+    "sort-json-array": "^0.1.7"
+  }
+}
