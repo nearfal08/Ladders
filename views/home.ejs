@@ -5,8 +5,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Node.js Blog</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <title>League of Legends Ladder</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/css/lol.css">
+    <script src="https://use.fontawesome.com/3a331f7f33.js"></script>
     <style>
         body {
             padding-top: 20px;
@@ -21,18 +26,26 @@
 <body>
     <div class="container">
         <%- include( 'partials/navbar') %>
-            <div class="jumbotron">
-                <h1>League of Legends Ladder</h1>
-                <p class="success">Check out our articles below!</p>
-            </div>
+        <div class="jumbotron">
+            <h1>League of Legends Ladder</h1>
+            <p class="success">Check out our articles below!</p>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="standings list-group">
-                    </ul>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="standings list-group">
+                </ul>
             </div>
-            <%- include( 'partials/footer') %>
+        </div>
+         <%- include( 'partials/footer') %>
+    </div>
+    <div class="ladder_alerts">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          Imaqtpie moved up 4 spots to rank 10.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
     </div>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -54,10 +67,17 @@
         $('.success').html('Updated ladder at ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
         var counter = 1;
         $.each(players, function(index, value) {
-            $('.standings').append('<li class="list-group-item">' + counter + '. ' + value.playerOrTeamName + ' ' + value.leaguePoints + '</li>');
+            $('.standings').append('<li class="list-group-item">' + counter + '. ' + value.name + ' ' + value.points + '</li>');
             counter++;
         });
     });
+//        id: 300,
+//    rank: 100,
+//    name: 'self awakening',
+//    points: 551,
+//    level: null,
+//    wins: 647,
+//    losses: 597 },
 </script>
 
 </html>

@@ -1,0 +1,12 @@
+Ladders TODO
+--------------------
+- Store rankings. May overwrite them everytime. Need to pull rankings, delete them, then insert new ones, using old rankings to calculate movement.
+    Have seperate table storing a list of the final rankings for each day. Save these off at midnight every night.
+- Website pulls from db instead of api.
+- Add alert boxes when refreshing list on bottom right to notify user movement on the ladder.
+    - In the alert box, make the player name clickable. On click, scroll to the persons position on the ladder.
+- Create home page with option to select various games for their ladders.
+- Style page
+- Add additional stats, like win/loss etc... to players.
+- Add icons on the list like up and down arrows for recent movement.
+- Add animation on the list of a player moving (maybe)
